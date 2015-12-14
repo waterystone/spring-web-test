@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.adu.spring_test.web.model.ApiResult;
+import com.adu.spring_test.web.model.LoginRequired;
 import com.adu.spring_test.web.service.HelloService;
 
 /**
@@ -28,8 +29,9 @@ import com.adu.spring_test.web.service.HelloService;
  * @date 2015年11月17日 下午5:09:54
  */
 @Controller
-@RequestMapping("/test")
-public class HelloController {
+@RequestMapping("/api")
+@LoginRequired
+public class ApiController {
 	@Autowired
 	private HelloService helloService;
 

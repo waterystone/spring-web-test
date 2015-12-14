@@ -21,6 +21,7 @@
 		<org.springframework.version>3.2.0.RELEASE</org.springframework.version>
 
 		<javax.servlet.version>3.0.1</javax.servlet.version>
+		<jstl.version>1.2</jstl.version>
 		<fasterxml.jackson.version>2.3.0</fasterxml.jackson.version>
 	</properties>
 
@@ -88,11 +89,17 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 
+		<!-- servlet api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
 		</dependency>
 
 		<dependency>
