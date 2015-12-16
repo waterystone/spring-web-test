@@ -18,6 +18,7 @@ target/
 # temp ignore
 *.log
 logs/
+bin/
 *.cache
 *.diff
 *.patch
