@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +63,7 @@ public class LoginController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "commit", method = RequestMethod.POST)
-	public String commit(Model model, HttpServletRequest request, HttpServletResponse response, User user,
+	public String commit(Model model, HttpServletRequest request, HttpServletResponse response, @Valid User user,
 			@RequestParam(value = "srcUrl", required = false, defaultValue = "/") String srcUrl) throws IOException {
 		logger.info("op=commit_start,user={},srcUrl={}", user, srcUrl);
 

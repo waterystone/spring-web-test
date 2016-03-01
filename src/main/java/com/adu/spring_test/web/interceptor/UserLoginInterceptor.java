@@ -24,16 +24,18 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		Annotation annotation = handlerMethod.getBean().getClass().getAnnotation(LoginRequired.class);// 类级注解
-		if (annotation == null) {
-			annotation = handlerMethod.getMethodAnnotation(LoginRequired.class);// 方法级注解
-		}
+		if (handler instanceof HandlerMethod) {
+			HandlerMethod handlerMethod = (HandlerMethod) handler;
+			Annotation annotation = handlerMethod.getBean().getClass().getAnnotation(LoginRequired.class);// 类级注解
+			if (annotation == null) {
+				annotation = handlerMethod.getMethodAnnotation(LoginRequired.class);// 方法级注解
+			}
 
-		if (annotation != null && request.getSession().getAttribute("_USER_INFO_LOGIN_NAME_") == null) {// 判断session里的标记状态
-			String srcUrl = request.getRequestURI();
-			logger.info("[REQUIRE-login]srcUrl={}", srcUrl);
-			response.sendRedirect("/login?srcUrl=" + srcUrl);
+			if (annotation != null && request.getSession().getAttribute("_USER_INFO_LOGIN_NAME_") == null) {// 判断session里的标记状态
+				String srcUrl = request.getRequestURI();
+				logger.info("[REQUIRE-login]srcUrl={}", srcUrl);
+				response.sendRedirect("/login?srcUrl=" + srcUrl);
+			}
 		}
 		return true;
 	}
