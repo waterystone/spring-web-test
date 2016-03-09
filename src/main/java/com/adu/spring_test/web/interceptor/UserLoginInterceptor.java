@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -26,9 +27,10 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod handlerMethod = (HandlerMethod) handler;
-			Annotation annotation = handlerMethod.getBean().getClass().getAnnotation(LoginRequired.class);// 类级注解
+			Annotation annotation = AnnotationUtils.findAnnotation(handlerMethod.getBean().getClass(),
+					LoginRequired.class);// 类级注解
 			if (annotation == null) {
-				annotation = handlerMethod.getMethodAnnotation(LoginRequired.class);// 方法级注解
+				annotation = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), LoginRequired.class);// 方法级注解
 			}
 
 			if (annotation != null && request.getSession().getAttribute("_USER_INFO_LOGIN_NAME_") == null) {// 判断session里的标记状态
