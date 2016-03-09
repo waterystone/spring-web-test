@@ -27,7 +27,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod handlerMethod = (HandlerMethod) handler;
-			Annotation annotation = AnnotationUtils.findAnnotation(handlerMethod.getBean().getClass(),
+			LoginRequired annotation = AnnotationUtils.findAnnotation(handlerMethod.getBean().getClass(),
 					LoginRequired.class);// 类级注解
 			if (annotation == null) {
 				annotation = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), LoginRequired.class);// 方法级注解
