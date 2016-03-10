@@ -1,6 +1,7 @@
 package com.adu.spring_test.web.interceptor;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -25,6 +26,18 @@ public class UserInfoFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		logger.info("op=servlet_init_start,filterConfig={}", filterConfig);
 		this.filterConfig = filterConfig;
+		printFilterConfig();
+
+	}
+
+	private void printFilterConfig() {
+		Enumeration enumeration = this.filterConfig.getInitParameterNames();
+		int n = 1;
+		while (enumeration.hasMoreElements()) {
+			String key = (String) enumeration.nextElement();
+			String value = this.filterConfig.getInitParameter(key);
+			logger.info("[filterConfig-{}]{}={}", n++, key, value);
+		}
 
 	}
 

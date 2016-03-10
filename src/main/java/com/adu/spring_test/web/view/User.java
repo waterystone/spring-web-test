@@ -1,4 +1,4 @@
-package com.adu.spring_test.web.model;
+package com.adu.spring_test.web.view;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;

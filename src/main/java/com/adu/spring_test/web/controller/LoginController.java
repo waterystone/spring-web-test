@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.adu.spring_test.web.model.User;
+import com.adu.spring_test.web.model.UserContext;
+import com.adu.spring_test.web.model.UserInfo;
+import com.adu.spring_test.web.view.User;
 
 /**
  * 登陆
@@ -43,6 +45,9 @@ public class LoginController {
 	public String login(Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "srcUrl", required = false) String srcUrl) throws IOException {
 		logger.info("op=login_start,srcUrl={}", srcUrl);
+		if (UserContext.getUserInfo() != null) {
+			response.sendRedirect("");
+		}
 
 		model.addAttribute("srcUrl", srcUrl);// 带到登陆页
 		return "login/login";

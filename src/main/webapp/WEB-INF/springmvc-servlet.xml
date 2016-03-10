@@ -23,7 +23,6 @@
 			<!-- 对所有的请求拦截使用/** ,对某个模块下的请求拦截使用：/myPath/* -->
 			<mvc:mapping path="/**" /><!-- 拦截的url -->
 			<mvc:exclude-mapping path="/*.html" /><!-- 对/*.html的url不拦截 -->
-			<mvc:exclude-mapping path="/login/**" /><!-- 对login的url不拦截 -->
 			<mvc:exclude-mapping path="/favicon.ico" /><!-- 对login的url不拦截 -->
 			<bean class="com.adu.spring_test.web.interceptor.UserLoginInterceptor" />
 		</mvc:interceptor>
