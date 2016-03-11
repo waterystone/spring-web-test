@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.adu.spring_test.web.constants.CookieKeyConstant;
 import com.adu.spring_test.web.model.UserContext;
-import com.adu.spring_test.web.model.UserInfo;
+import com.adu.spring_test.web.utils.ResponseUtil;
 import com.adu.spring_test.web.view.User;
 
 /**
@@ -73,7 +74,7 @@ public class LoginController {
 		logger.info("op=commit_start,user={},srcUrl={}", user, srcUrl);
 
 		if (user.getName().length() <= 6) {// 简单判断
-			request.getSession().setAttribute("_USER_INFO_LOGIN_NAME_", user.getName());// 用户名加入session，标记登陆状态
+			ResponseUtil.addCookie(response, CookieKeyConstant.USER_NAME, user.getName(), 24 * 60 * 60);// 用户名加入Cookie，标记登陆状态
 			return "redirect:" + srcUrl;
 		}
 
@@ -95,7 +96,8 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		logger.info("op=logout_start,userName={}", request.getSession().getAttribute("_USER_INFO_LOGIN_NAME_"));
+		logger.info("op=logout_start,userInfo={}", UserContext.getUserInfo());
+		ResponseUtil.deleteCookie(response, CookieKeyConstant.USER_NAME);
 
 		request.getSession().invalidate();
 		return "redirect:/";

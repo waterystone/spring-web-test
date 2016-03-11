@@ -9,14 +9,16 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.adu.spring_test.web.constants.CookieKeyConstant;
 import com.adu.spring_test.web.model.UserContext;
 import com.adu.spring_test.web.model.UserInfo;
+import com.adu.spring_test.web.utils.RequestUtil;
 
 public class UserInfoFilter implements Filter {
 	private FilterConfig filterConfig;
@@ -46,7 +48,7 @@ public class UserInfoFilter implements Filter {
 			throws IOException, ServletException {
 		logger.info("op=servlet_doFilter_start");
 		try {
-			UserInfo userInfo = getUserInfo(request);
+			UserInfo userInfo = getUserInfoFromCookie(request);
 			UserContext.setUserInfo(userInfo);
 
 			chain.doFilter(request, response);
@@ -57,12 +59,15 @@ public class UserInfoFilter implements Filter {
 
 	}
 
-	private UserInfo getUserInfo(ServletRequest request) {
+	private UserInfo getUserInfoFromCookie(ServletRequest request) {
 		UserInfo res = null;
-		HttpSession httpSession = ((HttpServletRequest) request).getSession();
-		String name = (String) httpSession.getAttribute("_USER_INFO_LOGIN_NAME_");
-		if (name != null) {
-			res = new UserInfo(name);
+
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		Cookie uc = RequestUtil.getCookie(httpServletRequest, CookieKeyConstant.USER_NAME);
+
+		if (uc != null) {
+			String userName = uc.getValue();
+			res = new UserInfo(userName);
 		}
 		return res;
 	}
