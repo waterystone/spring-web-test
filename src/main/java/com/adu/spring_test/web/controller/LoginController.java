@@ -21,7 +21,7 @@ import com.adu.spring_test.web.view.User;
 
 /**
  * 登陆
- * 
+ *
  * @author yunjie.du
  * @date 2015年11月26日 下午2:55:38
  */
@@ -29,79 +29,76 @@ import com.adu.spring_test.web.view.User;
 @RequestMapping("/login")
 public class LoginController {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	/**
-	 * 进入登陆页
-	 * 
-	 * @param model
-	 * @param request
-	 * @param response
-	 * @param srcUrl
-	 *            原始URL。有可能是被拦截器拦截后跳转过来的，它会带上srcUrl参数。
-	 * @return
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String login(Model model, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "srcUrl", required = false) String srcUrl) throws IOException {
-		logger.info("op=login_start,srcUrl={}", srcUrl);
-		if (UserContext.getUserInfo() != null) {
-			response.sendRedirect("");
-		}
+    /**
+     * 进入登陆页
+     *
+     * @param model
+     * @param request
+     * @param response
+     * @param srcUrl   原始URL。有可能是被拦截器拦截后跳转过来的，它会带上srcUrl参数。
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String login(Model model, HttpServletRequest request, HttpServletResponse response,
+                        @RequestParam(value = "srcUrl", required = false) String srcUrl) throws IOException {
+        logger.info("op=login_start,srcUrl={}", srcUrl);
+        if (UserContext.getUserInfo() != null) {
+            response.sendRedirect(srcUrl);
+        }
 
-		model.addAttribute("srcUrl", srcUrl);// 带到登陆页
-		return "login/login";
+        model.addAttribute("srcUrl", srcUrl);// 带到登陆页
+        return "login/login";
 
-	}
+    }
 
-	/**
-	 * 登陆页提交
-	 * 
-	 * @param model
-	 * @param request
-	 * @param response
-	 * @param user
-	 *            form表单的组件名要与User的属性名一致！
-	 * @param srcUrl
-	 *            登陆前的原始URL
-	 * @return
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "commit", method = RequestMethod.POST)
-	public String commit(Model model, HttpServletRequest request, HttpServletResponse response, @Valid User user,
-			@RequestParam(value = "srcUrl", required = false, defaultValue = "/") String srcUrl) throws IOException {
-		logger.info("op=commit_start,user={},srcUrl={}", user, srcUrl);
+    /**
+     * 登陆页提交
+     *
+     * @param model
+     * @param request
+     * @param response
+     * @param user     form表单的组件名要与User的属性名一致！
+     * @param srcUrl   登陆前的原始URL
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "commit", method = RequestMethod.POST)
+    public String commit(Model model, HttpServletRequest request, HttpServletResponse response, @Valid User user,
+                         @RequestParam(value = "srcUrl", required = false, defaultValue = "/") String srcUrl) throws IOException {
+        logger.info("op=commit_start,user={},srcUrl={}", user, srcUrl);
 
-		if (user.getName().length() <= 6) {// 简单判断
-			ResponseUtil.addCookie(response, CookieKeyConstant.USER_NAME, user.getName(), 24 * 60 * 60);// 用户名加入Cookie，标记登陆状态
-			return "redirect:" + srcUrl;
-		}
+        if (user.getName().length() <= 6) {// 简单判断
+            ResponseUtil.addCookie(response, CookieKeyConstant.USER_NAME, user.getName(), 24 * 60 * 60);// 用户名加入Cookie，标记登陆状态
+            return "redirect:" + srcUrl;
+        }
 
-		logger.error("[ERROR-commit]user={}", user);
-		model.addAttribute("srcUrl", srcUrl);
-		model.addAttribute("error", "用户名错误，不能大于6位!");
-		return "login/login";
+        logger.error("[ERROR-commit]user={}", user);
+        model.addAttribute("srcUrl", srcUrl);
+        model.addAttribute("error", "用户名错误，不能大于6位!");
+        return "login/login";
 
-	}
+    }
 
-	/**
-	 * 注销
-	 * 
-	 * @param model
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		logger.info("op=logout_start,userInfo={}", UserContext.getUserInfo());
-		ResponseUtil.deleteCookie(response, CookieKeyConstant.USER_NAME);
+    /**
+     * 注销
+     *
+     * @param model
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.info("op=logout_start,userInfo={}", UserContext.getUserInfo());
+        ResponseUtil.deleteCookie(response, CookieKeyConstant.USER_NAME);
 
-		request.getSession().invalidate();
-		return "redirect:/";
+        request.getSession().invalidate();
+        return "redirect:/";
 
-	}
+    }
 
 }
