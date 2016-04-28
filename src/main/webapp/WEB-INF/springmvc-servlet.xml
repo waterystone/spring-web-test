@@ -51,4 +51,15 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<bean id="apiResultExceptionResolver" class="com.adu.spring_test.web.exception.ApiResultExceptionResolver" />
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
+		<property name="exceptionResolvers">
+			<list>
+				<ref bean="apiResultExceptionResolver" />
+			</list>
+		</property>
+		<property name="order" value="10" />
+	</bean>
+
 </beans>
