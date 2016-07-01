@@ -22,17 +22,18 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!--user info filter-->
 	<filter>
-		<filter-name>UserInfoFilter</filter-name>
+		<filter-name>userInfoFilter</filter-name>
 		<filter-class>com.adu.spring_test.web.interceptor.UserInfoFilter</filter-class>
 		<init-param>
-			<param-name>param1</param-name>
-			<param-value>value在这里呢</param-value>
+			<param-name>excludeUrls</param-name>
+			<param-value></param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>UserInfoFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>userInfoFilter</filter-name>
+		<url-pattern>/test/*</url-pattern>
 	</filter-mapping>
 
 

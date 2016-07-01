@@ -1,4 +1,5 @@
 package com.adu.spring_test.web.model;
+
 import java.io.Serializable;
 
 /**
@@ -21,6 +22,15 @@ public class ApiResult<T> implements Serializable {
         this.msg = msg;
         this.setData(result);
     }
+
+    /**
+     * SUCCESS
+     */
+    public static final ApiResult SUCCESS = new ApiResult(200, "success", null);
+    /**
+     * SERVER ERROR
+     */
+    public static final ApiResult SERVER_ERR = new ApiResult(500, "server error", null);
 
     public int getStatus() {
         return status;
@@ -51,6 +61,22 @@ public class ApiResult<T> implements Serializable {
         apiResult.data = data;
         apiResult.msg = "success";
         apiResult.status = 200;
+        return apiResult;
+    }
+
+    public static <T> ApiResult<T> buildFailedDataApiResult(String msg) {
+        return buildFailedDataApiResult(-1, msg, null);
+    }
+
+    public static <T> ApiResult<T> buildFailedDataApiResult(int status, String msg) {
+        return buildFailedDataApiResult(status, msg, null);
+    }
+
+    public static <T> ApiResult<T> buildFailedDataApiResult(int status, String msg, T data) {
+        ApiResult<T> apiResult = new ApiResult<T>();
+        apiResult.data = data;
+        apiResult.msg = msg;
+        apiResult.status = status;
         return apiResult;
     }
 
