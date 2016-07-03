@@ -2,10 +2,7 @@ package com.adu.spring_test.web.model;
 
 import java.io.Serializable;
 
-/**
- * Created with IntelliJ IDEA. User: xiaofeng.ma Date: 12-10-11 Time: 下午5:13 To
- * change this template use File | Settings | File Templates.
- */
+
 public class ApiResult<T> implements Serializable {
 
     private static final long serialVersionUID = 4637459385621476082L;

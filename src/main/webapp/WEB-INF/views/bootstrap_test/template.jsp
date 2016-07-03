@@ -7,6 +7,7 @@
     <%--为了确保适当的绘制和触屏缩放--%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%--上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随期后！--%>
+    <link rel="icon" href="/icon/favicon.ico">
     <title>Bootstrap 101 Template</title>
 
     <%--Bootstrap--%>
