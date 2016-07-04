@@ -14,7 +14,6 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
     <%--jQuery (necessary for Bootstrap's JavaScript plugins)--%>
     <script src="/js/jquery.js"></script>
-    <%--Include all compiled plugins (below), or include individual --%>
     <script src="/js/bootstrap.js"></script>
 
     <%--Custom styles for this template--%>
