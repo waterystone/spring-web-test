@@ -19,7 +19,7 @@
     <script src="/js/bootstrap.js"></script>
 
     <%--Custom styles for this template--%>
-    <link href="/css/bootstrap/starter-template.css" rel="stylesheet">
+    <link href="/css/bootstrap-test/starter-template.css" rel="stylesheet">
 
     <%--Custom javascripts for this template--%>
 

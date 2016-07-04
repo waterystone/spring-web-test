@@ -18,7 +18,7 @@
     <script src="/js/bootstrap.js"></script>
 
     <%--Custom styles for this template--%>
-    <link href="/css/bootstrap/grid.css" rel="stylesheet">
+    <link href="/css/bootstrap-test/grid.css" rel="stylesheet">
 
     <%--Custom javascripts for this template--%>
 

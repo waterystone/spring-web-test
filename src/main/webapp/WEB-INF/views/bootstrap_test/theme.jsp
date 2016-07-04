@@ -20,7 +20,7 @@
     <script src="/js/docs.min.js"></script>
 
     <%--Custom styles for this template--%>
-    <link href="/css/bootstrap/theme.css" rel="stylesheet">
+    <link href="/css/bootstrap-test/theme.css" rel="stylesheet">
 
     <%--Custom javascripts for this template--%>
 

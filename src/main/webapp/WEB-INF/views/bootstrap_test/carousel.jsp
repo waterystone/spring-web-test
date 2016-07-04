@@ -19,7 +19,7 @@
     <script src="/js/vendor/holder.min.js"></script>
 
     <%--Custom styles for this template--%>
-    <link href="/css/bootstrap/carousel.css" rel="stylesheet">
+    <link href="/css/bootstrap-test/carousel.css" rel="stylesheet">
 
     <%--Custom javascripts for this template--%>
 
