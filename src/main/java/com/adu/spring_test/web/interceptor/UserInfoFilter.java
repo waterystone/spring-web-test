@@ -63,7 +63,7 @@ public class UserInfoFilter implements Filter {
         try {
             UserInfo userInfo = getUserInfoFromCookie(request);
             if (userInfo == null) {
-                ResponseUtil.getHttpServletResponse(response).sendRedirect("/login?srcUrl=" + URLEncoder.encode(srcUrl, "UTF-8"));
+                ResponseUtil.getHttpServletResponse(response).sendRedirect("/user/login?srcUrl=" + URLEncoder.encode(srcUrl, "UTF-8"));
                 return;
             }
 

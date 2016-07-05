@@ -17,30 +17,24 @@
     <script src="/js/bootstrap.js"></script>
 
     <%--Custom styles for this template--%>
-    <link href="/css/user/login.css" rel="stylesheet">
+    <link href="/css/bootstrap-test/signin.css" rel="stylesheet">
     <%--Custom javascripts for this template--%>
-    <script src="/js/user/login.js"></script>
 
 </head>
 
 <body>
 <div class="container">
-
-    <form class="form-signin" role="form">
+    <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputAccount" class="sr-only">Email address</label>
-        <input type="text" id="inputAccount" class="form-control" placeholder="Account" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="inputSrcUrl" class="sr-only">srcUrl</label>
-        <input type="hidden" id="inputSrcUrl" class="form-control" value="${srcUrl}">
         <div class="checkbox">
-            <label><input id="inputRemember" type="checkbox" value="true"> Remember me</label>
+            <label><input type="checkbox" value="remember-me"> Remember me</label>
         </div>
-        <a class="btn btn-lg btn-primary btn-block" href="javascript:;" onclick="login_submit()">Sign in</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
-
-
 </body>
 </html>

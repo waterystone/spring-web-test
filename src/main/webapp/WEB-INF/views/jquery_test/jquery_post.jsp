@@ -11,19 +11,21 @@
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript">
         function button_click() {
-            $.post("http://localhost:8087/user/login",
+            $.post("/user/commit",
                     {
-                        account:"waterystone",
-                        password:"123456"
+                        account: "waterystone",
+                        password: "123456"
                     },
-                    function(data,status){
+                    function (data, status) {
                         alert("Data: " + data + "\nStatus: " + status);
-                        location.href = "http://localhost:8087/login";
-            });
+                        location.href = "/";
+                    });
         }
     </script>
 </head>
 <body>
-<button onclick="button_click()">登陆</button>
+<div class="container">
+    <button onclick="button_click()">登陆</button>
+</div>
 </body>
 </html>
