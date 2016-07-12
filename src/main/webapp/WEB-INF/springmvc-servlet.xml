@@ -38,6 +38,7 @@
 	<mvc:view-controller path="/" view-name="/index"/>
 	<mvc:view-controller path="/login" view-name="/login/login"/>
 	<mvc:view-controller path="/upload" view-name="/file/upload"/>
+	<mvc:view-controller path="/batchUpload" view-name="/file/batch_upload"/>
 
 
 	<!-- 拦截器 -->
