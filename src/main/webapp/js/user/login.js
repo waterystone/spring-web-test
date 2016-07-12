@@ -1,7 +1,7 @@
 function login_submit() {
 
 
-    jQuery.post("/user/commit",
+    jQuery.post("/login/commit",
         {
             account: jQuery("#inputAccount").val(),
             password: jQuery("#inputPassword").val(),
@@ -10,7 +10,6 @@ function login_submit() {
         function (data, status) {
             if (data.status != 200) {
                 alert(data.msg);
-                //location.href = "/user/login?srcUrl=" + srcUrl;
                 return;
             }
 

@@ -3,7 +3,6 @@ package com.adu.spring_test.web.interceptor;
 import com.adu.spring_test.web.constants.CookieKeyConstant;
 import com.adu.spring_test.web.model.UserContext;
 import com.adu.spring_test.web.model.UserInfo;
-import com.adu.spring_test.web.utils.JsonUtil;
 import com.adu.spring_test.web.utils.RequestUtil;
 import com.adu.spring_test.web.utils.ResponseUtil;
 import com.google.common.base.Splitter;
@@ -94,10 +93,10 @@ public class UserInfoFilter implements Filter {
         UserInfo res = null;
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        Cookie userCookie = RequestUtil.getCookie(httpServletRequest, CookieKeyConstant.USER_INFO);
+        Cookie userCookie = RequestUtil.getCookie(httpServletRequest, CookieKeyConstant.USER_ACCOUNT);
 
         if (userCookie != null) {
-            res = JsonUtil.toObject(userCookie.getValue(), UserInfo.class);
+            res = new UserInfo(userCookie.getValue());
         }
 
         return res;

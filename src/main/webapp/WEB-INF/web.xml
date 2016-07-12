@@ -33,7 +33,7 @@
     </filter>
     <filter-mapping>
         <filter-name>userInfoFilter</filter-name>
-        <url-pattern>/test/*</url-pattern>
+        <url-pattern>/abcd/*</url-pattern>
     </filter-mapping>
 
 
