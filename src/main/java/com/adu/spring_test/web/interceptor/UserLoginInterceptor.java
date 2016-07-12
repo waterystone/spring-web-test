@@ -33,7 +33,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         String srcUrl = getSrcUrl(request);
         logger.info("op=userLoginInterceptor_preHandle_start,srcUrl={}", srcUrl);
-        
+
         UserInfo userInfo = getUserInfoFromCookie(request);
         if (userInfo == null) {
             logger.error("[ERROR-NO-login]ip={},srcUrl={}", RequestUtil.getUserIp(request), srcUrl);

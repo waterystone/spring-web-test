@@ -36,7 +36,8 @@
 	<mvc:default-servlet-handler />
 
 	<mvc:view-controller path="/" view-name="/index"/>
-	<mvc:view-controller path="/login" view-name="/user/login"/>
+	<mvc:view-controller path="/login" view-name="/login/login"/>
+	<mvc:view-controller path="/upload" view-name="/file/upload"/>
 
 
 	<!-- 拦截器 -->
@@ -64,6 +65,12 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
 	</bean>
 
 	<bean id="apiResultExceptionResolver" class="com.adu.spring_test.web.exception.ApiResultExceptionResolver" />
