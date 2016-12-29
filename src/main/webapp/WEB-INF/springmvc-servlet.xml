@@ -79,7 +79,7 @@
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.HandlerExceptionResolverComposite">
 		<property name="exceptionResolvers">
 			<list>
-				<!--按配置顺序调用各个ExceptionResolver，只到不返回null才结束resolve链-->
+				<!--按各个ExceptionResolver.getOrder()的顺序排序，前边的优先调用，只到不返回null才结束resolve链-->
 				<ref bean="apiResultExceptionResolver" />
 			</list>
 		</property>
