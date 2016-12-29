@@ -23,6 +23,7 @@ import java.io.IOException;
 public class RequestController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    //http://localhost:8077/requestParam/testMyRequestParam?type=ta&users[0].name=adu&users[1].name=tang
     @RequestMapping(value = "testMyRequestParam", method = RequestMethod.GET)
     @ResponseBody
     public ApiResult<MyRequestParam> testMyRequestParam(MyRequestParam myRequestParam) {
