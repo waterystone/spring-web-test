@@ -3,8 +3,6 @@ package com.adu.spring_test.web.server.controller;
 import java.util.Map;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -18,7 +16,6 @@ import com.google.common.collect.Maps;
  * @date 2016/6/27 14:33
  */
 public class RequestControllerTest extends WebBaseTest {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test
     public void testMyRequestParam() throws Exception {
