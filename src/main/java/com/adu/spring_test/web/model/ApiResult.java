@@ -2,7 +2,6 @@ package com.adu.spring_test.web.model;
 
 import java.io.Serializable;
 
-
 public class ApiResult<T> implements Serializable {
 
     private static final long serialVersionUID = 4637459385621476082L;
@@ -79,8 +78,7 @@ public class ApiResult<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "ApiResult [status=" + status + ", msg=" + msg + ", data="
-                + data + "]";
+        return "ApiResult [status=" + status + ", msg=" + msg + ", data=" + data + "]";
     }
 
     @Override

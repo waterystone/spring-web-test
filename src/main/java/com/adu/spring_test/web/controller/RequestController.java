@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -23,10 +24,10 @@ import java.io.IOException;
 public class RequestController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //http://localhost:8077/requestParam/testMyRequestParam?type=ta&users[0].name=adu&users[1].name=tang
+    //http://localhost:8077/requestParam/testMyRequestParam?type=ta&date=2017-01-03 16:27:52&users[0].name=adu&users[1].name=tang
     @RequestMapping(value = "testMyRequestParam", method = RequestMethod.GET)
     @ResponseBody
-    public ApiResult<MyRequestParam> testMyRequestParam(MyRequestParam myRequestParam) {
+    public ApiResult<MyRequestParam> testMyRequestParam(@Valid MyRequestParam myRequestParam) {
         logger.info("op=testMyRequestParam_start,myRequestParam={}", myRequestParam);
         return ApiResult.buildSuccessDataApiResult(myRequestParam);
     }

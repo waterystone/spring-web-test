@@ -51,6 +51,7 @@
 			<mvc:exclude-mapping path="/fonts/**" />
 			<mvc:exclude-mapping path="/icon/**" />
 			<mvc:exclude-mapping path="/login/**" />
+			<mvc:exclude-mapping path="/requestParam/**" />
 			<bean class="com.adu.spring_test.web.interceptor.UserLoginInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>

@@ -19,7 +19,7 @@
 
 		<org.springframework.version>4.2.2.RELEASE</org.springframework.version>
 
-		<javax.servlet.version>3.0-alpha-1</javax.servlet.version>
+		<javax.servlet.version>4.0.0-b01</javax.servlet.version>
 		<jstl.version>1.2</jstl.version>
 		<fasterxml.jackson.version>2.3.0</fasterxml.jackson.version>
 		<validation.api.version>1.1.0.Final</validation.api.version>
@@ -115,7 +115,7 @@
 		<!-- servlet api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
