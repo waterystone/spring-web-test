@@ -17,7 +17,7 @@
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources mapping="/icon/**" location="/icon/" />
 
-	<!--用于将json/xml格式的参数转换为类对象(RequestBody)-->
+	<!--用于将json/xml格式的参数与类对象间互相转换(RequestBody/ResponseBody)-->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

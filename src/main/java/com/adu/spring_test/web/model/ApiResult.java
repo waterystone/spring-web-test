@@ -2,6 +2,8 @@ package com.adu.spring_test.web.model;
 
 import java.io.Serializable;
 
+import com.adu.spring_test.web.enums.ApiResultErrorEnum;
+
 public class ApiResult<T> implements Serializable {
 
     private static final long serialVersionUID = 4637459385621476082L;
@@ -22,11 +24,8 @@ public class ApiResult<T> implements Serializable {
     /**
      * SUCCESS
      */
-    public static final ApiResult SUCCESS = new ApiResult(200, "success", null);
-    /**
-     * SERVER ERROR
-     */
-    public static final ApiResult SERVER_ERR = new ApiResult(500, "server error", null);
+    public static final ApiResult SUCCESS = new ApiResult(ApiResultErrorEnum.SUCC.getCode(),
+            ApiResultErrorEnum.SUCC.getDesc(), null);
 
     public int getStatus() {
         return status;
@@ -55,13 +54,13 @@ public class ApiResult<T> implements Serializable {
     public static <T> ApiResult<T> buildSuccessDataApiResult(T data) {
         ApiResult<T> apiResult = new ApiResult<T>();
         apiResult.data = data;
-        apiResult.msg = "success";
-        apiResult.status = 200;
+        apiResult.msg = ApiResultErrorEnum.SUCC.getDesc();
+        apiResult.status = ApiResultErrorEnum.SUCC.getCode();
         return apiResult;
     }
 
     public static <T> ApiResult<T> buildFailedDataApiResult(String msg) {
-        return buildFailedDataApiResult(-1, msg, null);
+        return buildFailedDataApiResult(ApiResultErrorEnum.UNKNOWN_ERROR.getCode(), msg, null);
     }
 
     public static <T> ApiResult<T> buildFailedDataApiResult(int status, String msg) {

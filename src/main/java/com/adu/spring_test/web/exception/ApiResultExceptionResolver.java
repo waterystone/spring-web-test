@@ -21,6 +21,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
+import com.adu.spring_test.web.enums.ApiResultErrorEnum;
 import com.adu.spring_test.web.model.ApiResult;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.google.common.base.Joiner;
@@ -33,6 +34,10 @@ public class ApiResultExceptionResolver extends ExceptionHandlerExceptionResolve
     private final HttpMessageConverter jsonHttpMessageConverter = new FastJsonHttpMessageConverter();
 
     private final ModelAndView EMPTY = new ModelAndView();
+
+    public ApiResultExceptionResolver() {
+        this.setOrder(Ordered.HIGHEST_PRECEDENCE + 10000);
+    }
 
     @Override
     protected ModelAndView doResolveHandlerMethodException(HttpServletRequest request, HttpServletResponse response,
@@ -73,15 +78,11 @@ public class ApiResultExceptionResolver extends ExceptionHandlerExceptionResolve
             for (ObjectError objectError : bindException.getAllErrors()) {
                 errorMessageList.add(objectError.getDefaultMessage());
             }
-            return ApiResult.buildFailedDataApiResult(-1, Joiner.on(";").join(errorMessageList));
+            return ApiResult.buildFailedDataApiResult(ApiResultErrorEnum.ARGUMENT_ERROR.getCode(),
+                    Joiner.on(";").join(errorMessageList));
         }
 
-        return ApiResult.SERVER_ERR;
-    }
-
-    @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE + 10000;
+        return ApiResult.buildFailedDataApiResult(ApiResultErrorEnum.SERVER_ERROR.getCode(), e.getMessage());
     }
 
 }
