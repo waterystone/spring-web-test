@@ -1,12 +1,10 @@
 package com.adu.spring_test.web.server.controller;
 
-import com.adu.spring_test.web.server.WebBaseTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+
+import com.adu.spring_test.web.server.WebBaseTest;
 
 /**
  * @author yunjie.du
@@ -17,7 +15,7 @@ public class ApiControllerTest extends WebBaseTest {
 
     @Test
     public void hello() throws Exception {
-        ResultActions res = mockMvc.perform(MockMvcRequestBuilders.get("/api/hello")).andDo(MockMvcResultHandlers.print());
+        String res = httpGet("/api/hello");
         logger.info("res={}", res);
     }
 }

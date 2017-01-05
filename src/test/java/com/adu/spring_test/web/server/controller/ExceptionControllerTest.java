@@ -1,9 +1,6 @@
 package com.adu.spring_test.web.server.controller;
 
 import org.junit.Test;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.adu.spring_test.web.server.WebBaseTest;
 
@@ -14,9 +11,14 @@ import com.adu.spring_test.web.server.WebBaseTest;
 public class ExceptionControllerTest extends WebBaseTest {
 
     @Test
+    public void nullPointerException() throws Exception {
+        String res = httpGet("/exception/nullPointerException");
+        logger.info("res={}", res);
+    }
+
+    @Test
     public void indexOutOfBoundsException() throws Exception {
-        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.get("/exception/IndexOutOfBoundsException"))
-                .andDo(MockMvcResultHandlers.print()).andReturn();
-        logger.info("res={}", res.getResponse().getContentAsString());
+        String res = httpGet("/exception/indexOutOfBoundsException");
+        logger.info("res={}", res);
     }
 }

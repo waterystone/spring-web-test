@@ -72,6 +72,11 @@ public class ApiResultExceptionResolver extends ExceptionHandlerExceptionResolve
     }
 
     private ApiResult extractApiResult(Exception e) {
+        if (e instanceof NullPointerException) {
+            return ApiResult.buildFailedDataApiResult(ApiResultErrorEnum.SERVER_ERROR.getCode(),
+                    "NullPointerException");
+        }
+
         if (e instanceof BindException) {// 参数验证错误
             BindException bindException = (BindException) e;
             List<String> errorMessageList = Lists.newArrayListWithExpectedSize(bindException.getErrorCount());

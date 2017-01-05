@@ -20,7 +20,15 @@ import com.google.common.collect.Lists;
 public class ExceptionController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "IndexOutOfBoundsException")
+    @RequestMapping(value = "nullPointerException")
+    @ResponseBody
+    public ApiResult<String> nullPointerException() {
+        String str=null;
+        String res=str.toString();
+        return ApiResult.buildSuccessDataApiResult(res);
+    }
+
+    @RequestMapping(value = "indexOutOfBoundsException")
     @ResponseBody
     public ApiResult<List<String>> indexOutOfBoundsException() {
         List<String> list = Lists.newArrayList();

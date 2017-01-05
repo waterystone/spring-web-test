@@ -3,12 +3,8 @@ package com.adu.spring_test.web.server.controller;
 import java.util.Map;
 
 import org.junit.Test;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.adu.spring_test.web.server.WebBaseTest;
-import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
 
 /**
@@ -19,19 +15,17 @@ public class RequestControllerTest extends WebBaseTest {
 
     @Test
     public void testMyRequestParam() throws Exception {
-        Map<String, String> paramters = Maps.newHashMap();
-        paramters.put("type", "a.5");
-        paramters.put("number", "5");
-        paramters.put("progress", "22.37%");
-        paramters.put("date", "2027-01-03 16:27:52");
-        paramters.put("users[0].name", "adu");
-        paramters.put("users[0].password", "123456");
-        paramters.put("users[0].email", "adu@qq.com");
-        MvcResult res = mockMvc
-                .perform(MockMvcRequestBuilders.get("/requestParam/testMyRequestParam?"
-                        + Joiner.on("&").withKeyValueSeparator("=").join(paramters)))
-                .andDo(MockMvcResultHandlers.print()).andReturn();
+        Map<String, String> parameters = Maps.newHashMap();
+        parameters.put("type", "a.5");
+        parameters.put("number", "5");
+        parameters.put("progress", "22.37%");
+        parameters.put("date", "2027-01-03 16:27:52");
+        parameters.put("users[0].name", "adu");
+        parameters.put("users[0].password", "123456");
+        parameters.put("users[0].email", "adu@qq.com");
 
-        logger.info("res={}", res.getResponse().getContentAsString());
+        String res = httpGet("/requestParam/testMyRequestParam", parameters);
+
+        logger.info("res={}", res);
     }
 }
