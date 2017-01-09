@@ -13,6 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({
         "classpath:applicationContext.xml"
 })
-public abstract class BaseTest {
+public abstract class AppBaseTest {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 }
