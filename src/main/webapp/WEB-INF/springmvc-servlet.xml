@@ -4,20 +4,24 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
-	default-autowire="byName">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-autowire="byType">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.adu.spring_test.web.controller" />
+
+	<context:component-scan base-package="com.adu.spring_test.web.controller" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources mapping="/icon/**" location="/icon/" />
 
-	<!--用于将json/xml格式的参数与类对象间互相转换(RequestBody/ResponseBody)-->
+	<!--用于将json/xml格式的参数与类对象间互相转换(RequestBody/ResponseBody)，根据content-type/accept和Java类型选用不同的HttpMessageConvert-->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -52,6 +56,7 @@
 			<mvc:exclude-mapping path="/icon/**" />
 			<mvc:exclude-mapping path="/login/**" />
 			<mvc:exclude-mapping path="/requestParam/**" />
+			<mvc:exclude-mapping path="/exception/**" />
 			<bean class="com.adu.spring_test.web.interceptor.UserLoginInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
