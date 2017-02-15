@@ -54,6 +54,14 @@ public class RequestController {
         return ApiResult.buildSuccessDataApiResult(user);
     }
 
+    //curl -d '{"name":"adu","password":"123456"}' -X POST -H 'Content-Type:application/json' http://localhost:8087/requestParam/testJson
+    @RequestMapping(value = "testJson2")
+    @ResponseBody
+    public ApiResult<User> testJson2( @RequestParam("user") User user) {
+        logger.info("op=testJson_start,user={}", user);
+        return ApiResult.buildSuccessDataApiResult(user);
+    }
+
     //curl -d '<?xml version="1.0" encoding="UTF-8" ?><admin><name>adu</name><age>23</age></admin>' -X POST -H 'Content-Type:application/xml' http://localhost:8087/requestParam/testXML
     @RequestMapping(value = "testXML")
     @ResponseBody

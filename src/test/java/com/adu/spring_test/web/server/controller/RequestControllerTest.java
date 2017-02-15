@@ -2,6 +2,8 @@ package com.adu.spring_test.web.server.controller;
 
 import java.util.Map;
 
+import com.adu.spring_test.web.utils.JsonUtil;
+import com.adu.spring_test.web.view.User;
 import org.junit.Test;
 
 import com.adu.spring_test.web.server.WebBaseTest;
@@ -25,6 +27,22 @@ public class RequestControllerTest extends WebBaseTest {
         parameters.put("users[0].email", "adu@qq.com");
 
         String res = httpGet("/requestParam/testMyRequestParam", parameters);
+
+        logger.info("res={}", res);
+    }
+
+    @Test
+    public void testJson2() throws Exception {
+        User user=new User();
+        user.setName("adu");
+        user.setPassword("123456");
+        user.setEmail("a@qq.com");
+
+        Map<String, String> parameters = Maps.newHashMap();
+        parameters.put("user", JsonUtil.toString(user));
+
+
+        String res = httpGet("/requestParam/testJson2", parameters);
 
         logger.info("res={}", res);
     }
