@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class HelloServiceTest extends AppBaseTest {
     @Autowired
-    private HelloService helloService;
+    private HelloService hello2ServiceImpl;
 
     @Test
     public void hello() {
-        String res = helloService.hello();
+        String res = hello2ServiceImpl.hello();
         logger.debug("res={}", res);
     }
 

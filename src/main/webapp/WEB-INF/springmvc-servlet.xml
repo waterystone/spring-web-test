@@ -57,6 +57,7 @@
 			<mvc:exclude-mapping path="/login/**" />
 			<mvc:exclude-mapping path="/requestParam/**" />
 			<mvc:exclude-mapping path="/exception/**" />
+			<mvc:exclude-mapping path="/favicon.ico" />
 			<bean class="com.adu.spring_test.web.interceptor.UserLoginInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>

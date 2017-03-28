@@ -2,11 +2,11 @@ package com.adu.spring_test.web.server.controller;
 
 import java.util.Map;
 
-import com.adu.spring_test.web.utils.JsonUtil;
-import com.adu.spring_test.web.view.User;
 import org.junit.Test;
 
 import com.adu.spring_test.web.server.WebBaseTest;
+import com.adu.spring_test.web.utils.JsonUtil;
+import com.adu.spring_test.web.view.User;
 import com.google.common.collect.Maps;
 
 /**
@@ -32,15 +32,34 @@ public class RequestControllerTest extends WebBaseTest {
     }
 
     @Test
+    public void testArray() throws Exception {
+        Map<String, String> parameters = Maps.newHashMap();
+        parameters.put("array", "adu,abc,test");
+
+        String res = httpGet("/requestParam/testArray", parameters);
+
+        logger.info("res={}", res);
+    }
+
+    @Test
+    public void testList() throws Exception {
+        Map<String, String> parameters = Maps.newHashMap();
+        parameters.put("list", "adu,abc,test");
+
+        String res = httpGet("/requestParam/testList", parameters);
+
+        logger.info("res={}", res);
+    }
+
+    @Test
     public void testJson2() throws Exception {
-        User user=new User();
+        User user = new User();
         user.setName("adu");
         user.setPassword("123456");
         user.setEmail("a@qq.com");
 
         Map<String, String> parameters = Maps.newHashMap();
         parameters.put("user", JsonUtil.toString(user));
-
 
         String res = httpGet("/requestParam/testJson2", parameters);
 
