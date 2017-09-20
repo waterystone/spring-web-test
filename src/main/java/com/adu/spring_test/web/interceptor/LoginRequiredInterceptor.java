@@ -1,7 +1,5 @@
 package com.adu.spring_test.web.interceptor;
 
-import java.lang.annotation.Annotation;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +10,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.adu.spring_test.web.model.LoginRequired;
+import com.adu.spring_test.web.annotation.LoginRequired;
 
 /**
  * 登陆拦截器

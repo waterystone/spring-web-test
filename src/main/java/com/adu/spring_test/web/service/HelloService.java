@@ -1,5 +1,7 @@
 package com.adu.spring_test.web.service;
 
 public interface HelloService {
-	public String hello();
+    String hello();
+
+    int add(int a, int b);
 }

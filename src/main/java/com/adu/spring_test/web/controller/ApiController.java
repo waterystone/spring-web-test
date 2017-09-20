@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.adu.spring_test.web.model.ApiResult;
-import com.adu.spring_test.web.model.LoginRequired;
+import com.adu.spring_test.web.annotation.LoginRequired;
 import com.adu.spring_test.web.service.HelloService;
 
 /**
